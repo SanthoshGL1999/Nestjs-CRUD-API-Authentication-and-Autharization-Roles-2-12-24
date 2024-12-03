@@ -7,6 +7,7 @@ import { UpdateMarksDto } from './DTO/Update.markDto';
 import { TEACHERS } from '../Teacher/entity/Teacher.entity';
 import { STUDENTS } from '../Student/entity/Student.entity';
 import { PROJECT } from '../project/entities/project.entity';
+import { error } from 'console';
 
 @Injectable()
 export class MarkService {
@@ -19,6 +20,66 @@ export class MarkService {
                 @InjectRepository(PROJECT) 
                 private projectRepository: Repository<PROJECT>,
 ){}
+
+    private calculateGrade(totalMarks: number): string{
+        const average = totalMarks/5;
+
+        if(average>=90) return 'A+';
+        if(average>=80) return 'A';
+        if(average>=70) return 'B';
+        if(average>=60) return 'C';
+        if(average>=50) return 'D';
+        return 'F';
+    }
+
+    async createMarks(createMarksDto: CreateMarksDto): Promise<MARKS>{
+        const {STUDENT_ID,TAMIL,ENGLISH,MATHS,SCIENCE,SOCIAL_SCIENCE} = createMarksDto;
+
+        const totalMarks = TAMIL+ENGLISH+MATHS+SCIENCE+SOCIAL_SCIENCE;
+
+        const GRADE = this.calculateGrade(totalMarks);
+
+        const marks = this.markRepository.create({
+            STUDENT_ID,
+            TAMIL,
+            ENGLISH,
+            MATHS,
+            SCIENCE,
+            SOCIAL_SCIENCE,
+            GRADE,
+        });
+        return this.markRepository.save(marks);
+    }
+
+    async updateMarks(id: number,updateMarksDto: UpdateMarksDto): Promise<MARKS>{
+        
+        const {STUDENT_ID,TAMIL,ENGLISH,MATHS,SCIENCE,SOCIAL_SCIENCE} = updateMarksDto;
+
+        const totalMarks = TAMIL+ENGLISH+MATHS+SCIENCE+SOCIAL_SCIENCE;
+
+        const GRADE = this.calculateGrade(totalMarks);
+
+  
+
+        // // (await marks).TAMIL = TAMIL,
+        // (await marks).ENGLISH = ENGLISH,
+        // (await marks).MATHS = MATHS,
+        // (await marks).SCIENCE = SCIENCE,
+        // (await marks).SOCIAL_SCIENCE = SOCIAL_SCIENCE,
+        // (await marks).GRADE = GRADE,
+
+        await this.markRepository.update(id,{
+            STUDENT_ID,
+            TAMIL,
+            ENGLISH,
+            MATHS,
+            SCIENCE,
+            SOCIAL_SCIENCE,
+            GRADE,
+        })
+
+        return await this.markRepository.findOneBy({id})
+    }
 
     async getMarkDetailById(id: number): Promise<any>{
         const marks = await this.markRepository.findOne({where: { id }});
@@ -42,6 +103,7 @@ export class MarkService {
                     maths: marks.MATHS,
                     science: marks.SCIENCE,
                     social_science: marks.SOCIAL_SCIENCE,
+                    grade: marks.GRADE,
                     },
             student: student 
                     ? {

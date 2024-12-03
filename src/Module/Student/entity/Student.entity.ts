@@ -18,9 +18,6 @@ export class STUDENTS{
 
     @Column()
     COURSE: string;
-    
-    @Column()
-    GRADE: string;
 
     @Column()
     CLASS_TEACHER: number;

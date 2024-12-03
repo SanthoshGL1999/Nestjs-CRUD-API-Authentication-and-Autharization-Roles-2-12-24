@@ -38,7 +38,6 @@ export class StudentService {
                             name: student.NAME,
                             age: student.AGE,
                             course: student.COURSE,
-                            grade: student.GRADE,
                             class_teacher: student.id,
                         },
                         teacher: teacher.map(teacher =>({
@@ -54,6 +53,7 @@ export class StudentService {
                                 maths: marks.MATHS,
                                 science: marks.SCIENCE,
                                 social_science: marks.SOCIAL_SCIENCE,
+                                grade: marks.GRADE,
                             }
                             :null,
                         project: projects
@@ -95,7 +95,7 @@ export class StudentService {
         return {
             ...students,
             marks: mark
-            ? { id: mark.id, tamil: mark.TAMIL, english: mark.ENGLISH, maths: mark.MATHS, science: mark.SCIENCE, social_science: mark.SOCIAL_SCIENCE }
+            ? { id: mark.id, tamil: mark.TAMIL, english: mark.ENGLISH, maths: mark.MATHS, science: mark.SCIENCE, social_science: mark.SOCIAL_SCIENCE, grade: mark.GRADE }
             : null,
         };
     }
@@ -129,7 +129,7 @@ export class StudentService {
             return {
                 ...student,
                 teacher: teacher ? { id: teacher.id, name: teacher.NAME } : null,
-                mark: mark ? { id: mark.id, tamil: mark.TAMIL, english: mark.ENGLISH, maths: mark.MATHS, science: mark.SCIENCE, social_science: mark.SOCIAL_SCIENCE } : null,
+                mark: mark ? { id: mark.id, tamil: mark.TAMIL, english: mark.ENGLISH, maths: mark.MATHS, science: mark.SCIENCE, social_science: mark.SOCIAL_SCIENCE, grade: mark.GRADE } : null,
                 project: project ? { id: project.id, title: project.TITLE, project_subject: project.PROJECT_SUBJECT, project_mark: project.PROJECT_MARKS } : null,
             }
         });

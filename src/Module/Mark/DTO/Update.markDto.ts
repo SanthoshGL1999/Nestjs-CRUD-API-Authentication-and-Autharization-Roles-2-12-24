@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 
 export class UpdateMarksDto{
@@ -32,4 +32,9 @@ export class UpdateMarksDto{
     @IsNotEmpty()
     @IsOptional()
     SOCIAL_SCIENCE: number;
+
+    @IsString()
+    @IsNotEmpty()
+    @IsOptional()
+    GRADE: string;
 }

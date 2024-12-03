@@ -26,6 +26,9 @@ export class MARKS{
     @Column()
     SOCIAL_SCIENCE: number;
 
+    @Column()
+    GRADE: string;
+
     @ManyToOne(()=>STUDENTS,(students)=> students.marks)
     @JoinColumn({name:'STUDENT_ID'})
     students: STUDENTS;

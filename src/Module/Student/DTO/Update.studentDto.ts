@@ -18,11 +18,6 @@ export class UpdateStudentDto{
     @IsOptional()
     COURSE: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @IsOptional()
-    GRADE: string;
-
     @IsNumber()
     @IsNotEmpty()
     @IsOptional()

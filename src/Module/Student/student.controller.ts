@@ -9,11 +9,10 @@ import { role } from '../auth/Guards/enums/role.enum';
 
 @Controller('student')
 @UseGuards(JwtAuthGuard,RolesGuard)
-@Roles(role.ADMIN,role.TEACHER)
 export class StudentController {
     constructor(private readonly studentService: StudentService){}
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get(':id/detail')
     async getStudentDetails(@Param('id') id: number) {
         const data = await this.studentService.getStudentDetailsById(id); // Convert string to number
@@ -23,7 +22,7 @@ export class StudentController {
         };
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get(':id/teacher')
     async getTeacherDetails(@Param('id')id: number) {
         const data = await this.studentService.getStudentTeacherDetails(id);
@@ -33,7 +32,7 @@ export class StudentController {
         };
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.STUDENT,role.ADMIN,role.TEACHER)
     @Get(':id/mark')
     async getMarkDetails(@Param('id')id: number) {
         const data = await this.studentService.getStudentMarkDetails(id);
@@ -43,7 +42,7 @@ export class StudentController {
         };
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get(':id/project')
     async getProjectDetail(@Param('id')id: number){
         const data = await this.studentService.getStudentProjectDetail(id);
@@ -53,7 +52,7 @@ export class StudentController {
         };
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get('allDetail')
     async getAllDetails() {
         const data = await this.studentService.getAllDetails();
@@ -63,35 +62,31 @@ export class StudentController {
         };
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get()
     findAll(){
         return this.studentService.findAll()
     }
 
-    @Roles(role.STUDENT)
+    @Roles(role.ADMIN,role.TEACHER,role.STUDENT)
     @Get(':id')
     findOne(@Param('id')id: number){
         return this.studentService.findOne(id)
     }
 
-  
+    @Roles(role.ADMIN,role.TEACHER)
     @Post()
     create(@Body() createStudentDto: CreateStudentDto){
         return this.studentService.create(createStudentDto)
     }
 
-    @Get('my-profile')
-    async getMyProfile(@Request() req) {
-      return this.studentService.findOne(req.user.id);
-    }
-
-  
+    @Roles(role.ADMIN,role.TEACHER)
     @Put(':id')
     update(@Param('id') id: number,@Body() updateStudentDto: UpdateStudentDto){
         return this.studentService.update(id,updateStudentDto)
     }
 
+    @Roles(role.ADMIN,role.TEACHER)
     @Delete(':id')
     remove(@Param('id') id: number){
         return this.studentService.remove(id)

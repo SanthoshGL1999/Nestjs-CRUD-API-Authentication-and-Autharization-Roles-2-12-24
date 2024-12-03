@@ -10,10 +10,9 @@ import { RolesGuard } from '../auth/Guards/roles/roles.guard';
 
 @Controller('teacher')
 @UseGuards(JwtAuthGuard,RolesGuard)
-@Roles(role.ADMIN)
 export class TeacherController {
     constructor(private readonly teacherService: TeacherService){}
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get(':id/detail')
     async getTeacherDetailById(@Param('id') id: number) {
         const data = await this.teacherService.getTeacherDetailById(id);
@@ -23,7 +22,7 @@ export class TeacherController {
         };
     }
 
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get(':id/student')
     async getTeacherStudentDetail(@Param('id')id: number) {
         const data = await this.teacherService.getTeacherStduentDetail(id);
@@ -42,7 +41,7 @@ export class TeacherController {
     //     };
     // }
 
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get(':id/project')
     async getTeacherProjectDetail(@Param('id')id: number) {
         const data = await this.teacherService.getTeacherProjectDetail(id);
@@ -52,7 +51,7 @@ export class TeacherController {
         };
     }
 
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get('alldetail')
     async getAllDetail() {
         const data = await this.teacherService.getAllDetail();
@@ -62,29 +61,30 @@ export class TeacherController {
         };
     }
 
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get()
     findAll(){
         return this.teacherService.findAll();
     }
     
-    @Roles(role.TEACHER)
+    @Roles(role.ADMIN,role.TEACHER)
     @Get(':id')
     findOne(@Param('id') id: number){
         return this.teacherService.findOne(id);
     }
-
+    @Roles(role.ADMIN)
     @Post()
     create(@Body() teacher:TEACHERS){
         return this.teacherService.create(teacher)
     }
     
-    
+    @Roles(role.ADMIN)
     @Put(':id')
     update(@Param('id') id: number, @Body() teacher: TEACHERS){
         return this.teacherService.update(id,teacher)
     }
 
+    @Roles(role.ADMIN)
     @Delete(':id')
     remove(@Param('id') id: number): Promise<void>{
         return this.teacherService.remove(id)

@@ -140,14 +140,14 @@ export class TeacherService {
             const studentData = Assignstudent.map(student =>({
                 id: student.id,
                 name: student.NAME,
+                project : projects.find((p) => p.id === student.id),
             }));
             // const mark = marks.find((m) => m.id === teachers.id);
-            const project = projects.find((p) => p.id === teachers.id);
             return {
                 ...teachers,
                 student:studentData,
                 // mark: mark ? { id: mark.id, tamil: mark.TAMIL, english: mark.ENGLISH, maths: mark.MATHS, science: mark.SCIENCE, social_science: mark.SOCIAL_SCIENCE } : null,
-                project: project ? { id: project.id, title: project.TITLE, project_subject: project.PROJECT_SUBJECT, project_mark: project.PROJECT_MARKS } : null,
+                // project: project ? { id: project.id, title: project.TITLE, project_subject: project.PROJECT_SUBJECT, project_mark: project.PROJECT_MARKS } : null,
             }
         });
 
