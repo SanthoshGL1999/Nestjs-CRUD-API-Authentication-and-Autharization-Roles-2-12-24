@@ -27,7 +27,6 @@ export declare class StudentController {
     findAll(): Promise<import("./entity/Student.entity").STUDENTS[]>;
     findOne(id: number): Promise<import("./entity/Student.entity").STUDENTS>;
     create(createStudentDto: CreateStudentDto): Promise<import("./entity/Student.entity").STUDENTS>;
-    getMyProfile(req: any): Promise<import("./entity/Student.entity").STUDENTS>;
     update(id: number, updateStudentDto: UpdateStudentDto): Promise<void>;
     remove(id: number): Promise<void>;
 }

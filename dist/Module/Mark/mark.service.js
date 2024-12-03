@@ -27,6 +27,50 @@ let MarkService = class MarkService {
         this.studentRepository = studentRepository;
         this.projectRepository = projectRepository;
     }
+    calculateGrade(totalMarks) {
+        const average = totalMarks / 5;
+        if (average >= 90)
+            return 'A+';
+        if (average >= 80)
+            return 'A';
+        if (average >= 70)
+            return 'B';
+        if (average >= 60)
+            return 'C';
+        if (average >= 50)
+            return 'D';
+        return 'F';
+    }
+    async createMarks(createMarksDto) {
+        const { STUDENT_ID, TAMIL, ENGLISH, MATHS, SCIENCE, SOCIAL_SCIENCE } = createMarksDto;
+        const totalMarks = TAMIL + ENGLISH + MATHS + SCIENCE + SOCIAL_SCIENCE;
+        const GRADE = this.calculateGrade(totalMarks);
+        const marks = this.markRepository.create({
+            STUDENT_ID,
+            TAMIL,
+            ENGLISH,
+            MATHS,
+            SCIENCE,
+            SOCIAL_SCIENCE,
+            GRADE,
+        });
+        return this.markRepository.save(marks);
+    }
+    async updateMarks(id, updateMarksDto) {
+        const { STUDENT_ID, TAMIL, ENGLISH, MATHS, SCIENCE, SOCIAL_SCIENCE } = updateMarksDto;
+        const totalMarks = TAMIL + ENGLISH + MATHS + SCIENCE + SOCIAL_SCIENCE;
+        const GRADE = this.calculateGrade(totalMarks);
+        await this.markRepository.update(id, {
+            STUDENT_ID,
+            TAMIL,
+            ENGLISH,
+            MATHS,
+            SCIENCE,
+            SOCIAL_SCIENCE,
+            GRADE,
+        });
+        return await this.markRepository.findOneBy({ id });
+    }
     async getMarkDetailById(id) {
         const marks = await this.markRepository.findOne({ where: { id } });
         if (!marks) {
@@ -49,6 +93,7 @@ let MarkService = class MarkService {
                 maths: marks.MATHS,
                 science: marks.SCIENCE,
                 social_science: marks.SOCIAL_SCIENCE,
+                grade: marks.GRADE,
             },
             student: student
                 ? {

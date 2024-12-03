@@ -35,10 +35,6 @@ __decorate([
 ], STUDENTS.prototype, "COURSE", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], STUDENTS.prototype, "GRADE", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], STUDENTS.prototype, "CLASS_TEACHER", void 0);
 __decorate([

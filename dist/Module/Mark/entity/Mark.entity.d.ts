@@ -7,5 +7,6 @@ export declare class MARKS {
     MATHS: number;
     SCIENCE: number;
     SOCIAL_SCIENCE: number;
+    GRADE: string;
     students: STUDENTS;
 }

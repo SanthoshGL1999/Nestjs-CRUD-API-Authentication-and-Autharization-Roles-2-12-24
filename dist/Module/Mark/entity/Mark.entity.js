@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", Number)
 ], MARKS.prototype, "SOCIAL_SCIENCE", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], MARKS.prototype, "GRADE", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => Student_entity_1.STUDENTS, (students) => students.marks),
     (0, typeorm_1.JoinColumn)({ name: 'STUDENT_ID' }),
     __metadata("design:type", Student_entity_1.STUDENTS)

@@ -11,6 +11,9 @@ export declare class MarkService {
     private studentRepository;
     private projectRepository;
     constructor(markRepository: Repository<MARKS>, teacherRepository: Repository<TEACHERS>, studentRepository: Repository<STUDENTS>, projectRepository: Repository<PROJECT>);
+    private calculateGrade;
+    createMarks(createMarksDto: CreateMarksDto): Promise<MARKS>;
+    updateMarks(id: number, updateMarksDto: UpdateMarksDto): Promise<MARKS>;
     getMarkDetailById(id: number): Promise<any>;
     getMarkStudentDetail(id: number): Promise<any>;
     getMarkTeacherDetail(id: number): Promise<any>;

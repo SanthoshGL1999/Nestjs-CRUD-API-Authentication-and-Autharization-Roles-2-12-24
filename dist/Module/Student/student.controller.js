@@ -69,9 +69,6 @@ let StudentController = class StudentController {
     create(createStudentDto) {
         return this.studentService.create(createStudentDto);
     }
-    async getMyProfile(req) {
-        return this.studentService.findOne(req.user.id);
-    }
     update(id, updateStudentDto) {
         return this.studentService.update(id, updateStudentDto);
     }
@@ -81,7 +78,7 @@ let StudentController = class StudentController {
 };
 exports.StudentController = StudentController;
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)(':id/detail'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -89,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getStudentDetails", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)(':id/teacher'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -97,7 +94,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getTeacherDetails", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT, role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(':id/mark'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -105,7 +102,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getMarkDetails", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)(':id/project'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -113,21 +110,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getProjectDetail", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)('allDetail'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "getAllDetails", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "findAll", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.STUDENT),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER, role_enum_1.role.STUDENT),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -135,6 +132,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "findOne", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -142,13 +140,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('my-profile'),
-    __param(0, (0, common_1.Request)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], StudentController.prototype, "getMyProfile", null);
-__decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -157,6 +149,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "update", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -166,7 +159,6 @@ __decorate([
 exports.StudentController = StudentController = __decorate([
     (0, common_1.Controller)('student'),
     (0, common_1.UseGuards)(Jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     __metadata("design:paramtypes", [student_service_1.StudentService])
 ], StudentController);
 //# sourceMappingURL=student.controller.js.map

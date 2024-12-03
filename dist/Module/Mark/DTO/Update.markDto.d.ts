@@ -5,4 +5,5 @@ export declare class UpdateMarksDto {
     MATHS: number;
     SCIENCE: number;
     SOCIAL_SCIENCE: number;
+    GRADE: string;
 }

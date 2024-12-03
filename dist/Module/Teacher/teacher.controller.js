@@ -70,7 +70,7 @@ let TeacherController = class TeacherController {
 };
 exports.TeacherController = TeacherController;
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(':id/detail'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -78,7 +78,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TeacherController.prototype, "getTeacherDetailById", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(':id/student'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -86,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TeacherController.prototype, "getTeacherStudentDetail", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(':id/project'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -94,21 +94,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TeacherController.prototype, "getTeacherProjectDetail", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)('alldetail'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], TeacherController.prototype, "getAllDetail", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], TeacherController.prototype, "findAll", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.role.TEACHER),
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN, role_enum_1.role.TEACHER),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -116,6 +116,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TeacherController.prototype, "findOne", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -123,6 +124,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TeacherController.prototype, "create", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -131,6 +133,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TeacherController.prototype, "update", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -140,7 +143,6 @@ __decorate([
 exports.TeacherController = TeacherController = __decorate([
     (0, common_1.Controller)('teacher'),
     (0, common_1.UseGuards)(Jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.role.ADMIN),
     __metadata("design:paramtypes", [teacher_service_1.TeacherService])
 ], TeacherController);
 //# sourceMappingURL=teacher.controller.js.map

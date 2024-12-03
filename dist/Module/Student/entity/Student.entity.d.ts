@@ -6,7 +6,6 @@ export declare class STUDENTS {
     NAME: string;
     AGE: number;
     COURSE: string;
-    GRADE: string;
     CLASS_TEACHER: number;
     teacher: TEACHERS;
     marks: MARKS[];

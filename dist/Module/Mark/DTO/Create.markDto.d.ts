@@ -5,4 +5,5 @@ export declare class CreateMarksDto {
     MATHS: number;
     SCIENCE: number;
     SOCIAL_SCIENCE: number;
+    GRADE: string;
 }
